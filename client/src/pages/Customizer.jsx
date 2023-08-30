@@ -28,13 +28,14 @@ const Customizer = () => {
   const handleAiSubmit = async (type) => {
     try {
       setGeneratingImg(true);
-      const res = await fetch(`${config.development.backendUrl}`, {
+      const res = await fetch(`${config.production.backendUrl}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ prompt }),
       });
+      
       const data = await res.json();
       const { image } = data;
       handleDecals(type, `data:image/png;base64,${image}`);
